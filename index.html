@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Explorer by SolaCode</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="fixed-header">
+        <div class="header-title">🎨 Color Explorer</div>
+        <a href="https://yourportfolio.com" class="portfolio-link" target="_blank">Portfolio →</a>
+    </header>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>Explore Modern OKLCH Colors</h2>
+            <p>Interactive color palette with real-time preview and customization</p>
+        </div>
+
+        <div class="color-grid" id="colorGrid"></div>
+        
+        <div class="load-more-container">
+            <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">
+                Load More Colors
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="colorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Color Preview</h2>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="preview-section" id="previewSection">
+                    <div class="preview-text" id="previewText">Sample Text</div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="nav-btn" onclick="navigateColor(-1)">←</button>
+                    <div class="counter" id="counter">1 / 1</div>
+                    <button class="nav-btn" onclick="navigateColor(1)">→</button>
+                </div>
+
+                <div class="controls">
+                    <div class="control-group">
+                        <label>Preview Text</label>
+                        <input type="text" id="textInput" value="Sample Text" oninput="updatePreviewText()">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>Custom Colors</label>
+                        <div class="color-inputs">
+                            <div class="color-input-wrapper">
+                                <label style="font-size: 0.75rem;">Background Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="bgColorPicker" value="#1e293b" oninput="updateCustomColors()">
+                                    <input type="text" id="bgColorText" value="#1e293b" oninput="updateFromText('bg')">
+                                </div>
+                            </div>
+                            <div class="color-input-wrapper">
+                                <label style="font-size: 0.75rem;">Text Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="textColorPicker" value="#e2e8f0" oninput="updateCustomColors()">
+                                    <input type="text" id="textColorText" value="#e2e8f0" oninput="updateFromText('text')">
+                                </div>
+                            </div>
+                            <button class="swap-btn" onclick="swapColors()">⇄ Swap Colors</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Quick Actions</label>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="copyCurrentColor()">Copy HEX</button>
+                            <button class="quick-btn" onclick="copyCurrentOKLCH()">Copy OKLCH</button>
+                            <button class="quick-btn" onclick="applyCurrentAsBackground()">Use as BG</button>
+                            <button class="quick-btn" onclick="applyCurrentAsText()">Use as Text</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
